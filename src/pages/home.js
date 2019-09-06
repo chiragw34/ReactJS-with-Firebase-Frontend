@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+
+// Material UI stuff
 import Grid from "@material-ui/core/Grid";
 
 import Scream from "../components/Scream";
@@ -13,7 +15,6 @@ class home extends Component {
     axios
       .get("/screams")
       .then(res => {
-        console.log(res.data);
         this.setState({
           screams: res.data
         });
@@ -23,12 +24,12 @@ class home extends Component {
 
   render() {
     let recentScreamsMarkup = this.state.screams ? (
-      this.state.screams.map(scream => <Scream scream={scream}/>)
+      this.state.screams.map(scream => <Scream key={scream.screamId} scream={scream}/>)
     ) : (
       <p>Loading...</p>
     );
     return (
-      <Grid container spacing={16}>
+      <Grid container spacing={10}>
         <Grid item sm={8} xs={12}>
           {recentScreamsMarkup}
         </Grid>

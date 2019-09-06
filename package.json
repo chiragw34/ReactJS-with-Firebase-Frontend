@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.4.0",
     "axios": "^0.19.0",
+    "dayjs": "^1.8.16",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
@@ -31,5 +32,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"https://asia-east2-socialapp-40c09.cloudfunctions.net/api"
+  "proxy": "https://asia-east2-socialapp-40c09.cloudfunctions.net/api"
 }
