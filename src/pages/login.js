@@ -14,28 +14,32 @@ import Card from "@material-ui/core/Card";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const styles = {
-  form: {
-    textAlign: "center"
+  card: {
+    padding: "20px 20px 20px 20px",
+    marginTop: 50
   },
   image: {
     margin: "0px auto 20px auto",
     width: 250,
     height: 250
   },
-  pageTitle: {
-    margin: "10px auto 10px auto"
-  },
-  textField: {
-    margin: "10px auto 10px auto"
-  },
   button: {
     marginTop: 30,
     marginBottom: 10,
     position: "relative"
   },
-  card: {
-    padding: "20px 20px 20px 20px",
-    marginTop: 50
+  typography: {
+    useNextVariants: true
+  },
+  form: {
+    textAlign: "center"
+  },
+
+  pageTitle: {
+    margin: "10px auto 10px auto"
+  },
+  textField: {
+    margin: "10px auto 10px auto"
   },
   customError: {
     color: "red",
@@ -68,7 +72,7 @@ class login extends Component {
     axios
       .post("/login", userData)
       .then(res => {
-        console.log(res.data);
+        localStorage.setItem("FBIdToken", `Bearer ${res.data.token}`);
         this.setState({ loading: false });
         this.props.history.push("/");
       })
@@ -104,7 +108,7 @@ class login extends Component {
           </Typography>
 
           <form noValidate onSubmit={this.handleSubmit}>
-            <Card className={classes.card}>
+            <Card className={classes.card} width={200}>
               <TextField
                 id="email"
                 name="email"
@@ -146,7 +150,7 @@ class login extends Component {
                 <CircularProgress
                   className={classes.progress}
                   size={25}
-                  color="#fff"
+                  color="inherit"
                 />
               )}
             </Button>
