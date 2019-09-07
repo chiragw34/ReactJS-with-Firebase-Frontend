@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 // Material UI stuff
 import Card from "@material-ui/core/Card";
@@ -13,7 +13,9 @@ import Typography from "@material-ui/core/Typography";
 const styles = {
   card: {
     display: "flex",
-    marginBottom: 20
+    marginBottom: 20,
+    border:2,
+    borderColor:'#fff'
   },
   image: {
     minWidth: 200
