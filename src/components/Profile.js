@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import EditDetails from "./EditDetails";
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -21,6 +22,7 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import EditIcon from "@material-ui/icons/Edit";
+import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
 
 const styles = theme => ({
   paper: {
@@ -83,6 +85,10 @@ class Profile extends Component {
     fileInput.click();
   };
 
+  handleLogout = () => {
+    this.props.logoutUser();
+  };
+
   render() {
     const {
       classes,
@@ -97,6 +103,11 @@ class Profile extends Component {
       authenticated ? (
         <Paper className={classes.paper}>
           <div className={classes.profile}>
+            <ToolTip title="Logout" placement="top">
+              <IconButton onClick={this.handleLogout}>
+                <PowerSettingsNewRoundedIcon color="primary" />
+              </IconButton>
+            </ToolTip>
             <div className="image-wrapper">
               <img src={imageUrl} alt="profile" className="profile-image" />
               <input
@@ -147,6 +158,9 @@ class Profile extends Component {
               <CalendarToday color="primary" />{" "}
               <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
             </div>
+
+            <hr />
+            <EditDetails />
           </div>
         </Paper>
       ) : (
@@ -189,8 +203,8 @@ const mapStateToProps = state => ({
 const mapActionToProps = { logoutUser, uploadImage };
 
 Profile.propTypes = {
-  logoutUser:PropTypes.func.isRequired,
-  uploadImage:PropTypes.func.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  uploadImage: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
 };
