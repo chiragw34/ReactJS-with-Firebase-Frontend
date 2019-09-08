@@ -18,7 +18,8 @@ const styles = {
     borderColor:'#fff'
   },
   image: {
-    minWidth: 200
+    width: 125,
+    height: 125
   },
   content: {
     padding: 25,
