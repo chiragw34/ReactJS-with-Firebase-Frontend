@@ -11,6 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Zoom from "@material-ui/core/Zoom";
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -94,73 +95,75 @@ class login extends Component {
     const { errors } = this.state;
 
     return (
-      <Grid container className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
-          <img src={AppIcon} alt="logo" className={classes.image} />
-          <Typography
-            variant="h3"
-            className={classes.pageTitle}
-            color="textPrimary"
-          >
-            Login
-          </Typography>
-
-          <form noValidate onSubmit={this.handleSubmit}>
-            <Card className={classes.card} width={200}>
-              <TextField
-                id="email"
-                name="email"
-                type="email"
-                label="Email"
-                helperText={errors.email}
-                error={errors.email ? true : false}
-                className={classes.textField}
-                value={this.state.email}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <TextField
-                id="password"
-                name="password"
-                type="password"
-                label="Password"
-                helperText={errors.password}
-                error={errors.password ? true : false}
-                className={classes.textField}
-                value={this.state.password}
-                onChange={this.handleChange}
-                fullWidth
-              />
-            </Card>
-            {errors.general && (
-              <Typography variant="body2" className={classes.customError}>
-                {errors.general}
-              </Typography>
-            )}
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
+      <Zoom in={true}>
+        <Grid container className={classes.form}>
+          <Grid item sm />
+          <Grid item sm>
+            <img src={AppIcon} alt="logo" className={classes.image} />
+            <Typography
+              variant="h3"
+              className={classes.pageTitle}
+              color="textPrimary"
             >
               Login
-              {loading && (
-                <CircularProgress
-                  className={classes.progress}
-                  size={25}
-                  color="inherit"
+            </Typography>
+
+            <form noValidate onSubmit={this.handleSubmit}>
+              <Card className={classes.card} width={200}>
+                <TextField
+                  id="email"
+                  name="email"
+                  type="email"
+                  label="Email"
+                  helperText={errors.email}
+                  error={errors.email ? true : false}
+                  className={classes.textField}
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  fullWidth
                 />
+                <TextField
+                  id="password"
+                  name="password"
+                  type="password"
+                  label="Password"
+                  helperText={errors.password}
+                  error={errors.password ? true : false}
+                  className={classes.textField}
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  fullWidth
+                />
+              </Card>
+              {errors.general && (
+                <Typography variant="body2" className={classes.customError}>
+                  {errors.general}
+                </Typography>
               )}
-            </Button>
-            <br />
-            <small marginTop="20">
-              don't have an account? Signup <Link to="/signup">here</Link>
-            </small>
-          </form>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                Login
+                {loading && (
+                  <CircularProgress
+                    className={classes.progress}
+                    size={25}
+                    color="inherit"
+                  />
+                )}
+              </Button>
+              <br />
+              <small marginTop="20">
+                don't have an account? Signup <Link to="/signup">here</Link>
+              </small>
+            </form>
+          </Grid>
+          <Grid item sm />
         </Grid>
-        <Grid item sm />
-      </Grid>
+      </Zoom>
     );
   }
 }

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import EditDetails from "./EditDetails";
+import MyButton from "../util/MyButton";
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -14,8 +15,7 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import MuiLink from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import ToolTip from "@material-ui/core/Tooltip";
+import Zoom from "@material-ui/core/Zoom";
 
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -101,92 +101,90 @@ class Profile extends Component {
 
     let profileMarkup = !loading ? (
       authenticated ? (
-        <Paper className={classes.paper}>
-          <div className={classes.profile}>
-            <ToolTip title="Logout" placement="top">
-              <IconButton onClick={this.handleLogout}>
-                <PowerSettingsNewRoundedIcon color="primary" />
-              </IconButton>
-            </ToolTip>
-            <div className="image-wrapper">
-              <img src={imageUrl} alt="profile" className="profile-image" />
-              <input
-                type="file"
-                id="imageInput"
-                hidden="hidden"
-                onChange={this.handleImageChange}
-              />
-              <ToolTip
-                title="Edit profile picture"
-                placement="bottom"
-                className={classes.tooltip}
-              >
-                <IconButton onClick={this.handleEditPicture} className="button">
+        <Zoom in={true}>
+          <Paper className={classes.paper}>
+            <div className={classes.profile}>
+              <div className="image-wrapper">
+                <img src={imageUrl} alt="profile" className="profile-image" />
+                <input
+                  type="file"
+                  id="imageInput"
+                  hidden="hidden"
+                  onChange={this.handleImageChange}
+                />
+                <MyButton
+                  tip="Edit profile picture"
+                  onClick={this.handleEditPicture}
+                  btnClassName="button"
+                >
                   <EditIcon color="primary" />
-                </IconButton>
-              </ToolTip>
-            </div>
-            <hr />
-            <div className="profile-details">
-              <MuiLink
-                component={Link}
-                to={`/users/${handle}`}
-                color="primary"
-                variant="h5"
-              >
-                @{handle}
-              </MuiLink>
+                </MyButton>
+              </div>
               <hr />
-              {bio && <Typography variant="body2">{bio}</Typography>}
-              <hr />
-              {location && (
-                <Fragment>
-                  <LocationOn color="primary" /> <span>{location}</span>
-                  <hr />
-                </Fragment>
-              )}
-              {website && (
-                <Fragment>
-                  <LinkIcon color="primary" />
-                  <a href={website} target="_blank" rel="noopener noreferrer">
-                    {" "}
-                    {website}
-                  </a>
-                  <hr />
-                </Fragment>
-              )}
-              <CalendarToday color="primary" />{" "}
-              <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
+              <div className="profile-details">
+                <MuiLink
+                  component={Link}
+                  to={`/users/${handle}`}
+                  color="primary"
+                  variant="h5"
+                >
+                  @{handle}
+                </MuiLink>
+                <hr />
+                {bio && <Typography variant="body2">{bio}</Typography>}
+                <hr />
+                {location && (
+                  <Fragment>
+                    <LocationOn color="primary" /> <span>{location}</span>
+                    <hr />
+                  </Fragment>
+                )}
+                {website && (
+                  <Fragment>
+                    <LinkIcon color="primary" />
+                    <a href={website} target="_blank" rel="noopener noreferrer">
+                      {" "}
+                      {website}
+                    </a>
+                    <hr />
+                  </Fragment>
+                )}
+                <CalendarToday color="primary" />{" "}
+                <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
+              </div>
+              <MyButton tip="Logout" onClick={this.handleLogout}>
+                <PowerSettingsNewRoundedIcon color="primary" />
+              </MyButton>
+              <EditDetails />
             </div>
-
-            <hr />
-            <EditDetails />
-          </div>
-        </Paper>
+          </Paper>
+        </Zoom>
       ) : (
-        <Paper className={classes.paper}>
-          <Typography variant="body2" align="center">
-            No profile found, please login again
-          </Typography>
-          <div className={classes.buttons}>
-            <Button
-              variant="contained"
-              color="primary"
-              component={Link}
-              to="/login"
-            >
-              Login
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              component={Link}
-              to="/signup"
-            >
-              Signup
-            </Button>
-          </div>
-        </Paper>
+        <Zoom in={true}>
+          <Paper className={classes.paper}>
+            <Typography variant="body2" align="center">
+              No profile found, please login again
+            </Typography>
+            <div className={classes.buttons}>
+              <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                to="/login"
+              >
+                Login
+              </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                component={Link}
+                to="/signup"
+              >
+                Signup
+              </Button>
+            </div>
+          </Paper>
+        </Zoom>
       )
     ) : (
       <p>loading...</p>

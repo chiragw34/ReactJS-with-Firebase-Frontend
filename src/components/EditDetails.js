@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-//import theme from "../util/theme";
+import MyButton from "../util/MyButton";
 
 // Material UI stuff
 import Button from "@material-ui/core/Button";
@@ -10,8 +10,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
+import Zoom from "@material-ui/core/Zoom";
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -27,8 +26,8 @@ import EditIcon from "@material-ui/icons/Edit";
 const styles = {
   palette: {
     common: {
-      black: "#ffffff",
-      white: "#000000"
+      black: "#000000",
+      white: "#ffffff"
     },
     background: {
       paper: "#27002f",
@@ -59,9 +58,12 @@ const styles = {
       hint: "#7ed321"
     }
   },
-  textField:{
-      padding:4,
-      marginBottom:10
+  textField: {
+    padding: 4,
+    marginBottom: 10
+  },
+  button: {
+    float: "right"
   }
 };
 
@@ -107,19 +109,22 @@ class EditDetails extends Component {
       website: this.state.website,
       location: this.state.location
     };
-    this.props.editUserDetails(userDetails);//!
+    this.props.editUserDetails(userDetails);
     this.handleClose();
   };
 
   render() {
     const { classes } = this.props;
     return (
+      <Zoom in={true}>
       <Fragment>
-        <Tooltip title="Edit details" placement="top">
-          <IconButton onClick={this.handleOpen} className={classes.Button}>
-            <EditIcon color="primary" />
-          </IconButton>
-        </Tooltip>
+        <MyButton
+          tip="Edit details"
+          onClick={this.handleOpen}
+          btnClassName={classes.button}
+        >
+          <EditIcon color="primary" />
+        </MyButton>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -173,6 +178,8 @@ class EditDetails extends Component {
           </DialogActions>
         </Dialog>
       </Fragment>
+      </Zoom>      
+
     );
   }
 }
