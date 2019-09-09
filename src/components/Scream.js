@@ -5,6 +5,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
+import DeleteScream from './DeleteScream';
 
 // Material UI stuff
 import Card from "@material-ui/core/Card";
@@ -14,9 +15,9 @@ import Typography from "@material-ui/core/Typography";
 import Zoom from "@material-ui/core/Zoom";
 
 // Icons
-import ChatIcon from "@material-ui/icons/Chat";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import ChatIcon from "@material-ui/icons/ChatRounded";
+import FavoriteIcon from "@material-ui/icons/FavoriteRounded";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorderRounded";
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -24,14 +25,15 @@ import { likeScream, unlikeScream } from "../redux/actions/dataActions";
 
 const styles = {
   card: {
+    position:'relative',
     display: "flex",
     marginBottom: 20,
     border: 2,
     borderColor: "#fff"
   },
   image: {
-    width: 125,
-    height: 125
+    width: 170,
+    height: 170
   },
   content: {
     padding: 25,
@@ -74,7 +76,7 @@ class Scream extends Component {
         likeCount,
         commentCount
       },
-      user: { authenticated }
+      user: { authenticated, credentials:{handle} }
     } = this.props;
 
     const likeButton = !authenticated ? (
@@ -93,6 +95,10 @@ class Scream extends Component {
       </MyButton>
     );
 
+    const deleteButton = authenticated && userHandle === handle ? (
+      <DeleteScream screamId={screamId}/>
+    ):null
+
     return (
       <Zoom in={true}>
         <Card className={classes.card}>
@@ -110,6 +116,7 @@ class Scream extends Component {
             >
               {userHandle}
             </Typography>
+            {deleteButton}
             <Typography variant="body2" color="textSecondary">
               {dayjs(createdAt).fromNow()}
             </Typography>

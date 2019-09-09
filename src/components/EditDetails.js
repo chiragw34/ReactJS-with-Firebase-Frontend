@@ -63,7 +63,9 @@ const styles = {
     marginBottom: 10
   },
   button: {
-    float: "right"
+    // float: "right"
+    left: '43%',
+    top:'10%'
   }
 };
 

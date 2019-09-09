@@ -18,10 +18,10 @@ import Typography from "@material-ui/core/Typography";
 import Zoom from "@material-ui/core/Zoom";
 
 // Icons
-import LocationOn from "@material-ui/icons/LocationOn";
-import LinkIcon from "@material-ui/icons/Link";
-import CalendarToday from "@material-ui/icons/CalendarToday";
-import EditIcon from "@material-ui/icons/Edit";
+import LocationOn from "@material-ui/icons/LocationOnRounded";
+import LinkIcon from "@material-ui/icons/LinkRounded";
+import CalendarToday from "@material-ui/icons/CalendarTodayRounded";
+import EditIcon from "@material-ui/icons/EditRounded";
 import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
 
 const styles = theme => ({
@@ -69,6 +69,17 @@ const styles = theme => ({
     "& a": {
       margin: "20px 10px"
     }
+  },
+  paper: {
+    position: "relative"
+  },
+  logoutButton: {
+    left:'85%',
+    right: '10%',
+    top: '10%'
+  },
+  userHandle: {
+    textDecoration:'none'
   }
 });
 
@@ -103,6 +114,9 @@ class Profile extends Component {
       authenticated ? (
         <Zoom in={true}>
           <Paper className={classes.paper}>
+            <MyButton tip="Logout" onClick={this.handleLogout} btnClassName={classes.logoutButton}>
+              <PowerSettingsNewRoundedIcon color="primary" />
+              </MyButton>
             <div className={classes.profile}>
               <div className="image-wrapper">
                 <img src={imageUrl} alt="profile" className="profile-image" />
@@ -127,6 +141,7 @@ class Profile extends Component {
                   to={`/users/${handle}`}
                   color="primary"
                   variant="h5"
+                  className={classes.userHandle}
                 >
                   @{handle}
                 </MuiLink>
@@ -152,9 +167,6 @@ class Profile extends Component {
                 <CalendarToday color="primary" />{" "}
                 <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
               </div>
-              <MyButton tip="Logout" onClick={this.handleLogout}>
-                <PowerSettingsNewRoundedIcon color="primary" />
-              </MyButton>
               <EditDetails />
             </div>
           </Paper>

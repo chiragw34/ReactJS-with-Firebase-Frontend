@@ -10,9 +10,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 
 // Icons
-import AddIcon from "@material-ui/icons/Add";
-import HomeIcon from "@material-ui/icons/Home";
-import Notifications from "@material-ui/icons/Notifications";
+import AddIcon from "@material-ui/icons/AddRounded";
+import HomeIcon from "@material-ui/icons/HomeRounded";
+import Notifications from "@material-ui/icons/NotificationsRounded";
 
 class Navbar extends Component {
   render() {
@@ -23,15 +23,15 @@ class Navbar extends Component {
           {authenticated ? (
             <Fragment>
               <MyButton tip="Post a Scream!">
-                <AddIcon />
+                <AddIcon fontSize="large" />
               </MyButton>
               <Link to="/">
                 <MyButton tip="Home">
-                  <HomeIcon />
+                  <HomeIcon fontSize="large"/>
                 </MyButton>
               </Link>
               <MyButton tip="Notifications">
-                <Notifications />
+                <Notifications fontSize="large"/>
               </MyButton>
             </Fragment>
           ) : (

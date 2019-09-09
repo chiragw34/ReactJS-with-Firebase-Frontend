@@ -22,3 +22,7 @@ a{
 small{
   color: white
 }
+.MuiLink:hover{
+  text-decoration: none;
+}
+
