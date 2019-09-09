@@ -23,7 +23,7 @@ class Navbar extends Component {
           {authenticated ? (
             <Fragment>
               <MyButton tip="Post a Scream!">
-                <AddIcon fontSize="large" />
+                <AddIcon fontSize="large" color='palette.common.white'/>
               </MyButton>
               <Link to="/">
                 <MyButton tip="Home">

@@ -65,7 +65,7 @@ class Scream extends Component {
 
   render() {
     dayjs.extend(relativeTime);
-    const {
+    var {
       classes,
       scream: {
         body,
@@ -122,7 +122,7 @@ class Scream extends Component {
             </Typography>
             <Typography variant="body1">{body}</Typography>
             {likeButton}
-            <span>{this.props.scream.likeCount} Likes</span>
+            <span>{likeCount} Likes</span>
             <MyButton tip="comments">
               <ChatIcon color="primary" />
             </MyButton>

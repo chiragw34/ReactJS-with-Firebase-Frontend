@@ -70,9 +70,7 @@ const styles = theme => ({
       margin: "20px 10px"
     }
   },
-  paper: {
-    position: "relative"
-  },
+  
   logoutButton: {
     left:'85%',
     right: '10%',
