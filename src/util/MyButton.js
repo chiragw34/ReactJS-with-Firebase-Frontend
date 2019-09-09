@@ -2,7 +2,7 @@ import React from "react";
 
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
-import Zoom from '@material-ui/core/Zoom'
+import Zoom from "@material-ui/core/Zoom";
 
 export default ({ children, onClick, tip, btnClassName, tipClassName }) => (
   <Tooltip title={tip} className={tipClassName} TransitionComponent={Zoom}>

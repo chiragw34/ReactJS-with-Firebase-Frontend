@@ -23,9 +23,9 @@ const styles = {
     marginTop: 50
   },
   image: {
-    margin: "0px auto 20px auto",
-    width: 250,
-    height: 250
+    margin: "20px auto 20px auto",
+    width: 100,
+    height: 100
   },
   button: {
     marginTop: 30,
