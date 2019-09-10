@@ -11,10 +11,12 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Zoom from "@material-ui/core/Zoom";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import ThemeFile from "../util/theme";
+
 
 // Redux stuff
 import { connect } from "react-redux";
-import { postScream } from "../redux/actions/dataActions";
+import { postScream, clearErrors } from "../redux/actions/dataActions";
 
 // Icons
 import EditIcon from "@material-ui/icons/EditRounded";
@@ -23,54 +25,24 @@ import CloseIcon from "@material-ui/icons/CloseRounded";
 import { DialogContentText } from "@material-ui/core";
 
 const styles = theme => ({
-  palette: {
-    common: {
-      black: "#000000",
-      white: "#ffffff"
-    },
-    background: {
-      paper: "#27002f",
-      default: "#000000"
-    },
-    primary: {
-      light: "#cf70ff",
-      main: "#bd10e0",
-      dark: "#9013fe",
-      contrastText: "#ffffff"
-    },
-    secondary: {
-      light: "#cf70ff",
-      main: "#bd10e0",
-      dark: "#9013fe",
-      contrastText: "#ffffff"
-    },
-    error: {
-      light: "#e57373",
-      main: "#ff0000",
-      dark: "#d32f2f",
-      contrastText: "#ffffff"
-    },
-    text: {
-      primary: "#ffffff",
-      secondary: "#bd10e0",
-      disabled: "rgba(0, 0, 0, 0.38)",
-      hint: "#7ed321"
-    }
-  },
+  ...ThemeFile,
   submitButton: {
-    position: "relative"
+    position: "relative",
+    float: "right",
+    marginTop: 20,
+    marginBottom: 10
   },
   progressSpinner: {
     position: "absolute"
   },
   closeButton: {
     position: "absolute",
-    left: "90%",
-    top: "5%",
+    left: "91%",
+    top: "4%",
     color: "#bd10e0"
   },
   MuiFormHelperTextroot: {
-    color:"#d32f2f"
+    color: "#d32f2f"
   }
 });
 
@@ -86,7 +58,8 @@ class PostScream extends Component {
   };
 
   handleClose = () => {
-    this.setState({ open: false, errors:{} });
+    this.props.clearErrors();
+    this.setState({ open: false, errors: {} });
   };
 
   handleChange = event => {
@@ -105,8 +78,7 @@ class PostScream extends Component {
       });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: '' });
-      this.handleClose();
+      this.setState({ body: "", open: false, errors: {} });
     }
   }
 
@@ -174,6 +146,7 @@ class PostScream extends Component {
 }
 PostScream.propTypes = {
   postScream: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   UI: PropTypes.object.isRequired
 };
 
@@ -183,5 +156,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { postScream }
+  { postScream, clearErrors }
 )(withStyles(styles)(PostScream));

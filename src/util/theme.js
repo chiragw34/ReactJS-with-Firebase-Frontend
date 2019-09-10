@@ -6,17 +6,17 @@ export default {
     },
     background: {
       paper: "#27002f",
-      default: "#000000"
+      default: "#110013"
     },
     primary: {
-      light: "#cf70ff",
-      main: "#bd10e0",
+      light: "#cf70af",
+      main: "#bd10ff",
       dark: "#9013fe",
       contrastText: "#ffffff"
     },
     secondary: {
-      light: "#cf70ff",
-      main: "#bd10e0",
+      light: "#cf70af",
+      main: "#bd10ff",
       dark: "#9013fe",
       contrastText: "#ffffff"
     },
@@ -28,7 +28,7 @@ export default {
     },
     text: {
       primary: "#ffffff",
-      secondary: "#bd10e0",
+      secondary: "#ffc7e391",
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "#7ed321"
     }
@@ -40,7 +40,6 @@ export default {
         color: "#ffffff",
         backgroundColor: "#bd10e0"
       }
-    },
-    
+    }
   }
 };
