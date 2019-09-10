@@ -32,5 +32,15 @@ export default {
       disabled: "rgba(0, 0, 0, 0.38)",
       hint: "#7ed321"
     }
+  },
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        fontSize: 14,
+        color: "#ffffff",
+        backgroundColor: "#bd10e0"
+      }
+    },
+    
   }
 };

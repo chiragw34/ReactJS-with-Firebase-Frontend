@@ -8,7 +8,8 @@ export const LOADING_USER = "LOADING_USER";
 export const SET_ERRORS = "SET_ERRORS";
 export const LOADING_UI = "LOADING_UI";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
-export const LOADING_DATA= 'LOADING_DATA';
+export const LOADING_DATA = 'LOADING_DATA';
+export const POST_SCREAM = 'POST_SCREAM';
 
 // Data reducer types
 export const SET_SCREAM= 'SET_SCREAM';
