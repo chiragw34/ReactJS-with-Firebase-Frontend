@@ -1,20 +1,20 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import LikeButton from './LikeButton';
+import Comments from './Comments';
 
 // Material UI stuff
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Zoom from "@material-ui/core/Zoom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import ThemeFile from "../util/theme";
+import ThemeFile from "../../util/theme";
 
 // Icon
 import ExpandMore from "@material-ui/icons/ExpandMoreRounded";
@@ -24,15 +24,10 @@ import ChatIcon from "@material-ui/icons/ChatRounded";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { getScream } from "../redux/actions/dataActions";
-import { DialogContentText } from "@material-ui/core";
+import { getScream } from "../../redux/actions/dataActions";
 
 const styles = {
   ...ThemeFile,
-  invisibleSeparator: {
-    border: "none",
-    margin: 4
-  },
   profileImage: {
     maxWidth: 200,
     height: 200,
@@ -82,7 +77,8 @@ class ScreamDialog extends Component {
         likeCount,
         commentCount,
         userImage,
-        userHandle
+        userHandle,
+        comments
       },
       UI: { loading }
     } = this.props;
@@ -119,7 +115,10 @@ class ScreamDialog extends Component {
               <ChatIcon color="primary" />
             </MyButton>
             <span>{commentCount} comments</span>
-        </Grid>
+            
+          </Grid>
+          <hr className={classes.visibleSeparator} />
+          <Comments comments={comments}/>
       </Grid>
     );
 

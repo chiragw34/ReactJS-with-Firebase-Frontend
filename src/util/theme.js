@@ -41,5 +41,14 @@ export default {
         backgroundColor: "#bd10e0"
       }
     }
+  },
+  invisibleSeparator: {
+    border: "none",
+    margin: 4
+  },
+  visibleSeparator: {
+    borderBottom: "1px solid rgba(0,0,0,0.1)",
+    width:'100%',
+    marginBottom: 20
   }
 };

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 
 // Material UI stuff
 import Button from "@material-ui/core/Button";
@@ -11,18 +11,15 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Zoom from "@material-ui/core/Zoom";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import ThemeFile from "../util/theme";
-
+import ThemeFile from "../../util/theme";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { postScream, clearErrors } from "../redux/actions/dataActions";
+import { postScream, clearErrors } from "../../redux/actions/dataActions";
 
 // Icons
-import EditIcon from "@material-ui/icons/EditRounded";
 import AddIcon from "@material-ui/icons/AddRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
-import { DialogContentText } from "@material-ui/core";
 
 const styles = theme => ({
   ...ThemeFile,
@@ -89,58 +86,60 @@ class PostScream extends Component {
       UI: { loading }
     } = this.props;
     return (
-      <Fragment>
-        <MyButton onClick={this.handleOpen} tip="Post a scream">
-          <AddIcon fontSize="large" />
-        </MyButton>
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          fullWidth
-          maxWidth="sm"
-        >
-          <MyButton
-            tip="close"
-            onClick={this.handleClose}
-            tipClassName={classes.closeButton}
-          >
-            <CloseIcon />
+      <Zoom in={true}>
+        <Fragment>
+          <MyButton onClick={this.handleOpen} tip="Post a scream">
+            <AddIcon fontSize="large" />
           </MyButton>
-          <DialogTitle>Post a new scream</DialogTitle>
-          <DialogContent>
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                name="body"
-                type="text"
-                label="Scream"
-                multiline
-                rows="3"
-                placeholder="Scream your problems here"
-                error={errors.body ? true : false}
-                helperText={errors.body}
-                className={classes.textField}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                className={classes.submitButton}
-                disabled={loading}
-              >
-                Submit
-                {loading && (
-                  <CircularProgress
-                    size={30}
-                    className={classes.progressSpinner}
-                  />
-                )}
-              </Button>
-            </form>
-          </DialogContent>
-        </Dialog>
-      </Fragment>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            fullWidth
+            maxWidth="sm"
+          >
+            <MyButton
+              tip="close"
+              onClick={this.handleClose}
+              tipClassName={classes.closeButton}
+            >
+              <CloseIcon />
+            </MyButton>
+            <DialogTitle>Post a new scream</DialogTitle>
+            <DialogContent>
+              <form onSubmit={this.handleSubmit}>
+                <TextField
+                  name="body"
+                  type="text"
+                  label="Scream"
+                  multiline
+                  rows="3"
+                  placeholder="Scream your problems here"
+                  error={errors.body ? true : false}
+                  helperText={errors.body}
+                  className={classes.textField}
+                  onChange={this.handleChange}
+                  fullWidth
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  className={classes.submitButton}
+                  disabled={loading}
+                >
+                  Submit
+                  {loading && (
+                    <CircularProgress
+                      size={30}
+                      className={classes.progressSpinner}
+                    />
+                  )}
+                </Button>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </Fragment>
+      </Zoom>
     );
   }
 }

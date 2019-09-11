@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import MyButton from "../util/MyButton";
+import MyButton from "../../util/MyButton";
 
 // Material UI stuff
 import Button from "@material-ui/core/Button";
@@ -14,7 +14,7 @@ import Zoom from "@material-ui/core/Zoom";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { editUserDetails } from "../redux/actions/userActions";
+import { editUserDetails } from "../../redux/actions/userActions";
 
 // Icons
 import EditIcon from "@material-ui/icons/Edit";
