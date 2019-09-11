@@ -28,3 +28,6 @@ small{
 .MuiFormHelperText-root{
   color:"#d32f2f";
 }
+.MuiGrid-item {
+    margin: 5px;
+}

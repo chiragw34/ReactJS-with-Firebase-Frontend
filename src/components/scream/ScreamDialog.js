@@ -1,11 +1,15 @@
+// React stuff
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import MyButton from "../../util/MyButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
-import LikeButton from './LikeButton';
-import Comments from './Comments';
+
+// Components
+import MyButton from "../../util/MyButton";
+import LikeButton from "./LikeButton";
+import Comments from "./Comments";
+import CommentsForm from "./CommentsForm";
 
 // Material UI stuff
 import Dialog from "@material-ui/core/Dialog";
@@ -16,15 +20,14 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import ThemeFile from "../../util/theme";
 
-// Icon
+// Icons
 import ExpandMore from "@material-ui/icons/ExpandMoreRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
 import ChatIcon from "@material-ui/icons/ChatRounded";
 
-
 // Redux stuff
 import { connect } from "react-redux";
-import { getScream } from "../../redux/actions/dataActions";
+import { getScream, clearErrors } from "../../redux/actions/dataActions";
 
 const styles = {
   ...ThemeFile,
@@ -39,7 +42,7 @@ const styles = {
   },
   closeButton: {
     position: "absolute",
-    left: "92%",
+    left: "90%",
     color: "#ffffff"
   },
   expandButton: {
@@ -47,9 +50,9 @@ const styles = {
     left: "90%"
   },
   spinnerDiv: {
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 50,
-    marginBottom:50
+    marginBottom: 50
   }
 };
 
@@ -65,6 +68,7 @@ class ScreamDialog extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+    this.props.clearErrors();
   };
 
   render() {
@@ -84,11 +88,9 @@ class ScreamDialog extends Component {
     } = this.props;
 
     const dialogMarkup = loading ? (
-      <Zoom in={true}>
-        <div className={classes.spinnerDiv}>
-          <CircularProgress size={200} thickness={2}/>
-        </div>
-      </Zoom>
+      <div className={classes.spinnerDiv}>
+        <CircularProgress size={200} thickness={2} />
+      </div>
     ) : (
       <Grid container spacing={16}>
         <Grid items sm={5}>
@@ -108,17 +110,17 @@ class ScreamDialog extends Component {
             {dayjs(createdAt).format("h:mm a, DD MMMM YYYY")}
           </Typography>
           <hr className={classes.invisibleSeparator} />
-            <Typography variant="body1">{body}</Typography>
-            <LikeButton screamId={screamId} />
-            <span>{likeCount} likes</span>
-            <MyButton tip="comments">
-              <ChatIcon color="primary" />
-            </MyButton>
-            <span>{commentCount} comments</span>
-            
-          </Grid>
-          <hr className={classes.visibleSeparator} />
-          <Comments comments={comments}/>
+          <Typography variant="body1">{body}</Typography>
+          <LikeButton screamId={screamId} />
+          <span>{likeCount} likes</span>
+          <MyButton tip="comments">
+            <ChatIcon color="primary" />
+          </MyButton>
+          <span>{commentCount} comments</span>
+        </Grid>
+        <hr className={classes.visibleSeparator} />
+        <CommentsForm screamId={screamId} />
+        <Comments comments={comments} />
       </Grid>
     );
 
@@ -136,6 +138,7 @@ class ScreamDialog extends Component {
           onClose={this.handleClose}
           fullWidth
           maxWidth="sm"
+          TransitionComponent={Zoom}
         >
           <MyButton
             tip="close"
@@ -154,6 +157,7 @@ class ScreamDialog extends Component {
 }
 
 ScreamDialog.propTypes = {
+  clearErrors: PropTypes.func.isRequired,
   getScream: PropTypes.func.isRequired,
   screamId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
@@ -167,7 +171,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionToProps = {
-  getScream
+  getScream,
+  clearErrors
 };
 
 export default connect(

@@ -118,70 +118,68 @@ class EditDetails extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Zoom in={true}>
-      <Fragment>
-        <MyButton
-          tip="Edit details"
-          onClick={this.handleOpen}
-          btnClassName={classes.button}
-        >
-          <EditIcon color="primary" />
-        </MyButton>
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          fullWidth
-          maxWidth="sm"
-        >
-          <DialogTitle>Edit Your Details</DialogTitle>
-          <DialogContent>
-            <form>
-              <TextField
-                name="bio"
-                type="text"
-                label="Bio"
-                multiline
-                rows="3"
-                placeholder="A short bio about yourself"
-                className={classes.textField}
-                value={this.state.bio}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <TextField
-                name="website"
-                type="text"
-                label="Website"
-                placeholder="Your personal/professional website"
-                className={classes.textField}
-                value={this.state.website}
-                onChange={this.handleChange}
-                fullWidth
-              />
-              <TextField
-                name="location"
-                type="text"
-                label="Location"
-                placeholder="Where you live"
-                className={classes.textField}
-                value={this.state.location}
-                onChange={this.handleChange}
-                fullWidth
-              />
-            </form>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleSubmit} color="primary">
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </Fragment>
-      </Zoom>      
-
+        <Fragment>
+          <MyButton
+            tip="Edit details"
+            onClick={this.handleOpen}
+            btnClassName={classes.button}
+          >
+            <EditIcon color="primary" />
+          </MyButton>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            fullWidth
+            maxWidth="sm"
+            TransitionComponent={Zoom}
+          >
+            <DialogTitle>Edit Your Details</DialogTitle>
+            <DialogContent>
+              <form>
+                <TextField
+                  name="bio"
+                  type="text"
+                  label="Bio"
+                  multiline
+                  rows="3"
+                  placeholder="A short bio about yourself"
+                  className={classes.textField}
+                  value={this.state.bio}
+                  onChange={this.handleChange}
+                  fullWidth
+                />
+                <TextField
+                  name="website"
+                  type="text"
+                  label="Website"
+                  placeholder="Your personal/professional website"
+                  className={classes.textField}
+                  value={this.state.website}
+                  onChange={this.handleChange}
+                  fullWidth
+                />
+                <TextField
+                  name="location"
+                  type="text"
+                  label="Location"
+                  placeholder="Where you live"
+                  className={classes.textField}
+                  value={this.state.location}
+                  onChange={this.handleChange}
+                  fullWidth
+                />
+              </form>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={this.handleSubmit} color="primary">
+                Save
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Fragment>
     );
   }
 }

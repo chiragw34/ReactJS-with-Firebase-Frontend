@@ -27,8 +27,8 @@ const styles = {
     position: "relative",
     display: "flex",
     marginBottom: 20,
-    border: 2,
-    borderColor: "#fff"
+    borderRadius: 12,
+    borderColor: "text.primary"
   },
   image: {
     width: 170,

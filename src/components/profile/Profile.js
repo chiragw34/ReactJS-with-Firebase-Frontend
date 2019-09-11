@@ -26,7 +26,9 @@ import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRoun
 
 const styles = theme => ({
   paper: {
-    padding: 20
+    padding: 20,
+    borderRadius: 12,
+    borderColor: "text.primary"
   },
   profile: {
     "& .image-wrapper": {

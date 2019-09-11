@@ -9,15 +9,16 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
 import DeleteOutline from "@material-ui/icons/DeleteOutlineRounded";
+import Zoom from "@material-ui/core/Zoom";
 
 import { connect } from "react-redux";
 import { deleteScream } from "../../redux/actions/dataActions";
 
 const styles = {
   deleteButton: {
-    position:'absolute',
-    left: '92%',
-    top:'10%'
+    position: "absolute",
+    left: "90%",
+    top: "10%"
   }
 };
 
@@ -55,15 +56,16 @@ class DeleteScream extends Component {
           onClose={this.props.handleClose}
           fullWidth
           maxWidth="sm"
+          TransitionComponent={Zoom}
         >
           <DialogTitle>
-            Are you sure you want to delete this scream ? 
+            Are you sure you want to delete this scream ?
           </DialogTitle>
           <DialogActions>
-            <Button onClick={this.handleClose} color='primary'>
+            <Button onClick={this.handleClose} color="primary">
               Cancel
             </Button>
-            <Button onClick={this.deleteScream} color='primary'>
+            <Button onClick={this.deleteScream} color="primary">
               Delete
             </Button>
           </DialogActions>

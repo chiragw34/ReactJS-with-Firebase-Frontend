@@ -96,6 +96,7 @@ class PostScream extends Component {
             onClose={this.handleClose}
             fullWidth
             maxWidth="sm"
+            TransitionComponent={Zoom}
           >
             <MyButton
               tip="close"
