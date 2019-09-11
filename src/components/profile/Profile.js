@@ -70,14 +70,14 @@ const styles = theme => ({
       margin: "20px 10px"
     }
   },
-  
+
   logoutButton: {
-    left:'85%',
-    right: '10%',
-    top: '10%'
+    left: "85%",
+    right: "10%",
+    top: "10%"
   },
   userHandle: {
-    textDecoration:'none'
+    textDecoration: "none"
   }
 });
 
@@ -112,9 +112,13 @@ class Profile extends Component {
       authenticated ? (
         <Zoom in={true}>
           <Paper className={classes.paper}>
-            <MyButton tip="Logout" onClick={this.handleLogout} btnClassName={classes.logoutButton}>
+            <MyButton
+              tip="Logout"
+              onClick={this.handleLogout}
+              btnClassName={classes.logoutButton}
+            >
               <PowerSettingsNewRoundedIcon color="primary" />
-              </MyButton>
+            </MyButton>
             <div className={classes.profile}>
               <div className="image-wrapper">
                 <img src={imageUrl} alt="profile" className="profile-image" />
