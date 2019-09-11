@@ -35,10 +35,12 @@ export default function(state = initialState, action) {
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:
       var index = state.screams.findIndex(
-        scream => scream.screamId === action.payload
+        scream => scream.screamId === action.payload.screamId
       );
       state.screams[index] = action.payload;
-      console.log("LIKE_UNLIKE_SCREAM:", action.payload.likeCount);
+      if (state.scream.screamId === action.payload.screamId) {
+        state.scream = action.payload;
+      }
       return {
         ...state
       };

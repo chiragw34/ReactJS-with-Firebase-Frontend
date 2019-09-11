@@ -4,6 +4,7 @@ import MyButton from "../util/MyButton";
 import withStyles from "@material-ui/core/styles/withStyles";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
+import LikeButton from './LikeButton';
 
 // Material UI stuff
 import Dialog from "@material-ui/core/Dialog";
@@ -16,9 +17,10 @@ import Typography from "@material-ui/core/Typography";
 import ThemeFile from "../util/theme";
 
 // Icon
-import ClassIcon from "@material-ui/icons/CloseRounded";
 import ExpandMore from "@material-ui/icons/ExpandMoreRounded";
 import CloseIcon from "@material-ui/icons/CloseRounded";
+import ChatIcon from "@material-ui/icons/ChatRounded";
+
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -34,16 +36,25 @@ const styles = {
   profileImage: {
     maxWidth: 200,
     height: 200,
-    borderRadius: '50%',
-    objectFit:'cover'
+    borderRadius: "50%",
+    objectFit: "cover"
   },
   dialogContent: {
-    padding:20
+    padding: 20
   },
   closeButton: {
-    position: 'absolute',
-    left: '92%',
-    color: '#ffffff'
+    position: "absolute",
+    left: "92%",
+    color: "#ffffff"
+  },
+  expandButton: {
+    position: "absolute",
+    left: "90%"
+  },
+  spinnerDiv: {
+    textAlign: 'center',
+    marginTop: 50,
+    marginBottom:50
   }
 };
 
@@ -78,7 +89,9 @@ class ScreamDialog extends Component {
 
     const dialogMarkup = loading ? (
       <Zoom in={true}>
-        <CircularProgress size={200} />
+        <div className={classes.spinnerDiv}>
+          <CircularProgress size={200} thickness={2}/>
+        </div>
       </Zoom>
     ) : (
       <Grid container spacing={16}>
@@ -95,13 +108,17 @@ class ScreamDialog extends Component {
             @{userHandle}
           </Typography>
           <hr className={classes.invisibleSeparator} />
-            <Typography variant='body2' color='textSecondary'>
-              {dayjs(createdAt).format('h:mm a, DD MMMM YYYY')}
-            </Typography>
-            <hr className={classes.invisibleSeparator} />
-            <Typography variant='body1'>
-              {body}
-            </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {dayjs(createdAt).format("h:mm a, DD MMMM YYYY")}
+          </Typography>
+          <hr className={classes.invisibleSeparator} />
+            <Typography variant="body1">{body}</Typography>
+            <LikeButton screamId={screamId} />
+            <span>{likeCount} likes</span>
+            <MyButton tip="comments">
+              <ChatIcon color="primary" />
+            </MyButton>
+            <span>{commentCount} comments</span>
         </Grid>
       </Grid>
     );

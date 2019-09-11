@@ -5,8 +5,9 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 import MyButton from "../util/MyButton";
-import DeleteScream from './DeleteScream';
-import ScreamDialog from './ScreamDialog';
+import DeleteScream from "./DeleteScream";
+import ScreamDialog from "./ScreamDialog";
+import LikeButton from './LikeButton';
 
 // Material UI stuff
 import Card from "@material-ui/core/Card";
@@ -17,16 +18,13 @@ import Zoom from "@material-ui/core/Zoom";
 
 // Icons
 import ChatIcon from "@material-ui/icons/ChatRounded";
-import FavoriteIcon from "@material-ui/icons/FavoriteRounded";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorderRounded";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { likeScream, unlikeScream } from "../redux/actions/dataActions";
 
 const styles = {
   card: {
-    position:'relative',
+    position: "relative",
     display: "flex",
     marginBottom: 20,
     border: 2,
@@ -43,26 +41,7 @@ const styles = {
 };
 
 class Scream extends Component {
-  likedScream = () => {
-    if (
-      this.props.user.likes &&
-      this.props.user.likes.find(
-        like => like.screamId === this.props.scream.screamId
-      )
-    )
-      return true;
-    else return false;
-  };
-
-  likeScream = () => {
-    this.props.likeScream(this.props.scream.screamId);
-    console.log('1 likeScream',this.props.scream.likeCount)
-  };
-
-  unlikeScream = () => {
-    this.props.unlikeScream(this.props.scream.screamId);
-    console.log('1 unlikeScream',this.props.scream.likeCount)
-  };
+  
 
   render() {
     dayjs.extend(relativeTime);
@@ -77,28 +56,16 @@ class Scream extends Component {
         likeCount,
         commentCount
       },
-      user: { authenticated, credentials:{handle} }
+      user: {
+        authenticated,
+        credentials: { handle }
+      }
     } = this.props;
 
-    const likeButton = !authenticated ? (
-      <MyButton tip="like">
-        <Link to="/login">
-          <FavoriteBorder color="primary" />
-        </Link>
-      </MyButton>
-    ) : this.likedScream() ? (
-      <MyButton tip="Undo like" onClick={this.unlikeScream}>
-        <FavoriteIcon color="primary" />
-      </MyButton>
-    ) : (
-      <MyButton tip="Like" onClick={this.likeScream}>
-        <FavoriteBorder color="primary" />
-      </MyButton>
-    );
-
-    const deleteButton = authenticated && userHandle === handle ? (
-      <DeleteScream screamId={screamId}/>
-    ):null
+    const deleteButton =
+      authenticated && userHandle === handle ? (
+        <DeleteScream screamId={screamId} />
+      ) : null;
 
     return (
       <Zoom in={true}>
@@ -122,13 +89,13 @@ class Scream extends Component {
               {dayjs(createdAt).fromNow()}
             </Typography>
             <Typography variant="body1">{body}</Typography>
-            {likeButton}
+            <LikeButton screamId={screamId}/>
             <span>{likeCount} Likes</span>
             <MyButton tip="comments">
               <ChatIcon color="primary" />
             </MyButton>
             <span>{commentCount} comments</span>
-            <ScreamDialog screamId={screamId} userHandle={userHandle}/>
+            <ScreamDialog screamId={screamId} userHandle={userHandle} />
           </CardContent>
         </Card>
       </Zoom>
@@ -137,8 +104,6 @@ class Scream extends Component {
 }
 
 Scream.propTypes = {
-  likeScream: PropTypes.func.isRequired,
-  unlikeScream: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   scream: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired
@@ -148,12 +113,4 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-const mapActionsToProps = {
-  likeScream,
-  unlikeScream
-};
-
-export default connect(
-  mapStateToProps,
-  mapActionsToProps
-)(withStyles(styles)(Scream));
+export default connect(mapStateToProps)(withStyles(styles)(Scream));
