@@ -26,7 +26,7 @@ class home extends Component {
     );
     return (
       <Grid container spacing={3}>
-        <Grid item sm={3} xs={12} alignItems="center">
+        <Grid item sm={3} xs={12} >
           <Profile />
         </Grid>
         <Grid item sm={9} xs={12} >

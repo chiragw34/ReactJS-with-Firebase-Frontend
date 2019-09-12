@@ -93,10 +93,10 @@ class ScreamDialog extends Component {
       </div>
     ) : (
       <Grid container spacing={16}>
-        <Grid items sm={5}>
+        <Grid item sm={5}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
-        <Grid items sm={7}>
+        <Grid item sm={7}>
           <Typography
             component={Link}
             color="primary"
