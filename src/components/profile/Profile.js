@@ -192,7 +192,7 @@ class Profile extends Component {
               </Button>
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 component={Link}
                 to="/signup"
               >
@@ -203,7 +203,7 @@ class Profile extends Component {
         </Zoom>
       )
     ) : (
-      <p>loading...</p>
+      <p class='loading'>loading...</p>
     );
 
     return profileMarkup;

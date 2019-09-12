@@ -22,7 +22,7 @@ class home extends Component {
     let recentScreamsMarkup = !loading ? (
       screams.map(scream => <Scream key={scream.screamId} scream={scream} />)
     ) : (
-      <p>Loading...</p>
+      <p class="loading">Loading...</p>
     );
     return (
       <Grid container spacing={3}>

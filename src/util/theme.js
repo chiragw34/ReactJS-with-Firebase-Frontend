@@ -16,7 +16,7 @@ export default {
     },
     secondary: {
       light: "#cf70af",
-      main: "#bd10ff",
+      main: "rgb(239, 196, 255)",
       dark: "#9013fe",
       contrastText: "#ffffff"
     },
@@ -29,7 +29,7 @@ export default {
     text: {
       primary: "#ffffff",
       secondary: "#ffc7e391",
-      disabled: "rgba(0, 0, 0, 0.38)",
+      disabled: "rgba(189, 16, 255, 0.16)",
       hint: "#7ed321"
     }
   },
@@ -47,8 +47,8 @@ export default {
     margin: 4
   },
   visibleSeparator: {
-    borderBottom: "1px solid rgba(0,0,0,0.1)",
-    width:'100%',
-    marginBottom: 20
+    borderBottom: "1px solid #ffc7e391",
+    width: "100%",
+    marginBottom: 15
   }
 };

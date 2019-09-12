@@ -12,13 +12,14 @@ import Typography from "@material-ui/core/Typography";
 const styles = theme => ({
   ...ThemeFile,
   commentImage: {
-    maxWidth: "100%",
+    
+    width: 100,
     height: 100,
     borderRadius: "50%",
     objectFit: "cover"
   },
   commentData: {
-    marginLeft: 20
+   marginLeft: 20
   }
 });
 
@@ -26,7 +27,7 @@ class Comments extends Component {
   render() {
     const { classes, comments } = this.props;
     return (
-      <Grid container>
+      <Grid container >
         {comments.map((comment, index) => {
           const { body, createdAt, userImage, userHandle } = comment;
           return (
@@ -34,7 +35,6 @@ class Comments extends Component {
               <Grid item sm={12}>
                 <Grid container>
                   <Grid item sm={2}>
-                    {console.log(userImage)}
                     <img
                       src={userImage}
                       alt="comment"

@@ -38,7 +38,7 @@ const styles = {
     objectFit: "cover"
   },
   dialogContent: {
-    padding: 20
+    padding: 10
   },
   closeButton: {
     position: "absolute",
@@ -58,15 +58,37 @@ const styles = {
 
 class ScreamDialog extends Component {
   state = {
-    open: false
+    open: false,
+    oldPath: '',
+    newPath:''
   };
 
+  componentDidMount() {
+    if (this.props.openDialog) {
+      this.handleOpen();
+    }
+  }
+
   handleOpen = () => {
-    this.setState({ open: true });
+    let oldPath = window.location.pathname;
+
+    const { userHandle, screamId } = this.props;
+    const newPath = `/users/${userHandle}/scream/${screamId}`;
+
+    if (oldPath === newPath) oldPath = `/users/${userHandle}`;
+
+    window.history.pushState({ path: newPath }, null, newPath);
+
+    this.setState({ open: true, oldPath, newPath });
     this.props.getScream(this.props.screamId);
   };
 
   handleClose = () => {
+    window.history.pushState(
+      { path: this.state.oldPath },
+      null,
+      this.state.oldPath
+    );
     this.setState({ open: false });
     this.props.clearErrors();
   };
@@ -92,7 +114,7 @@ class ScreamDialog extends Component {
         <CircularProgress size={200} thickness={2} />
       </div>
     ) : (
-      <Grid container spacing={16}>
+      <Grid container spacing={10} style={{margin:0, width:'100%', padding:5}}>
         <Grid item sm={5}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
@@ -119,7 +141,7 @@ class ScreamDialog extends Component {
           <span>{commentCount} comments</span>
         </Grid>
         <hr className={classes.visibleSeparator} />
-        <CommentsForm screamId={screamId} />
+          <CommentsForm screamId={screamId} style={{padding:10}}/>
         <Comments comments={comments} />
       </Grid>
     );
