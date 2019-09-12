@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import EditDetails from "./EditDetails";
 import MyButton from "../../util/MyButton";
+import ProfileSkleton from "../../util/ProfileSkleton";
+import ThemeFile from '../../util/theme';
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -24,7 +26,8 @@ import CalendarToday from "@material-ui/icons/CalendarTodayRounded";
 import EditIcon from "@material-ui/icons/EditRounded";
 import PowerSettingsNewRoundedIcon from "@material-ui/icons/PowerSettingsNewRounded";
 
-const styles = theme => ({
+const styles = {
+  ...ThemeFile,
   paper: {
     padding: 20,
     borderRadius: 12,
@@ -53,7 +56,7 @@ const styles = theme => ({
         verticalAlign: "middle"
       },
       "& a": {
-        color: theme.palette.primary.main
+        color: ThemeFile.palette.primary.main
       }
     },
     "& hr": {
@@ -81,7 +84,7 @@ const styles = theme => ({
   userHandle: {
     textDecoration: "none"
   }
-});
+};
 
 class Profile extends Component {
   handleImageChange = event => {
@@ -203,7 +206,7 @@ class Profile extends Component {
         </Zoom>
       )
     ) : (
-      <p class='loading'>loading...</p>
+      <ProfileSkleton />
     );
 
     return profileMarkup;
